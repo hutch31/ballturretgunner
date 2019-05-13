@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/crosshair.gd" type="Script" id=1]
+[ext_resource path="res://images/crosshair.png" type="Texture" id=2]
+[ext_resource path="res://scenes/aimingdot.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="crosshair" type="Area2D" groups=[
+"crosshair",
+]]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="aimingdot" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="gun_timer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="timeout" from="gun_timer" to="." method="_on_Timer_timeout"]
